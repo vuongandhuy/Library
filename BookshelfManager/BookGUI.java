@@ -238,7 +238,7 @@ public class BookGUI {
                     book.getId(),
                     book.getTitle(),
                     book.getAuthor(),
-                    book.getNotes()
+                    book.getNote()
                 });
             }
         }
@@ -250,7 +250,7 @@ public class BookGUI {
     	tableModel.setRowCount(0); // Clear existing rows
         for (int i=0; i<manager.getBookCount(); i++) {
         	Book nextBook = manager.getBooks()[i];
-            tableModel.addRow(new Object[]{nextBook.getId(), nextBook.getTitle(), nextBook.getAuthor(), nextBook.getNotes()});
+            tableModel.addRow(new Object[]{nextBook.getId(), nextBook.getTitle(), nextBook.getAuthor(), nextBook.getNote()});
         }
     }
 
