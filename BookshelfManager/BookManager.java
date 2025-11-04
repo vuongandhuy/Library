@@ -41,19 +41,25 @@ public class BookManager {
      * 			1: if the new book has been successfully added
      * 			2: if there is no available space in the array
      */
-    public int addBook(Book book) {
-         for (int i = 0; i < bookCount; i++){
+  public int addBook(Book book) {
+        // Check if array is full
+        if (bookCount >= capacity) {
+            return 2;
+        }
+        
+        // Check if book with same ID already exists
+        for (int i = 0; i < bookCount; i++) {
             if (books[i].getId().equals(book.getId())) {
-            return 0;
-         }
-         if (bookCount > capacity);
-         return 2;
-
-         }
-        int i = getBookCount();
-        books[i] = book;
+                return 0;
+            }
+        }
+        
+        // Add the book
+        books[bookCount] = book;
+        bookCount++;
         return 1;
     }
+    
 
     /**
      * This method deletes the book with the given id. 
