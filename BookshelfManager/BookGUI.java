@@ -83,7 +83,7 @@ public class BookGUI {
         addToPanel(inputPanel, sortButton, gbc, 1, 7);
         
         // Table Panel
-        tableModel = new DefaultTableModel(new String[]{"ID", "Title", "Author", "Notes"}, 0){
+        tableModel = new DefaultTableModel(new String[]{"ID", "Title", "Author", "Notes"}, 0 ){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // All cells are not editable
@@ -92,6 +92,19 @@ public class BookGUI {
         bookTable = new JTable(tableModel);
         //bookTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Disable auto-resizing of columns
         bookTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+// Using keylistener and e.consume() if user type digits to avoid numbers
+        titleField.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char c = e.getKeyChar();
+                if (Character.isDigit(c)) {
+                    e.consume();
+                 
+                }
+            }
+        });
+        
+        
 
 
         // Set column widths
@@ -155,7 +168,8 @@ public class BookGUI {
          sortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                manager.sorBooks();
+                manager.sortBooks();
+                displayBooks();
             }
         });
 
