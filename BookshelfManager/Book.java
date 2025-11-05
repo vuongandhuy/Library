@@ -7,13 +7,13 @@ public class Book {
    private String id;
    private String title;
    private String author;
-   private String note;
+   private String notes;
 //Constructor
-public Book(String id, String title, String author, String note){
+public Book(String id, String title, String author, String notes){
     this.id = id;
     this.title = title;
     this.author = author;
-    this.note = note;
+    this.notes = notes;
 }
 //Getters
 public String getId(){;
@@ -28,8 +28,8 @@ public String getAuthor(){;
     return author;
 
 }
-public String getNote(){;
-    return note;
+public String getNotes(){;
+    return notes;
 
 }
 }
