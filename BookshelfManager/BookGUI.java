@@ -5,10 +5,10 @@
  * You must not change anything else in the class.  
  */
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -18,6 +18,8 @@ public class BookGUI {
     private JTextField idField, titleField, authorField, notesField, searchField; // Input fields
     private JTable bookTable;
     private DefaultTableModel tableModel;
+    private JButton displayButton;
+    private JButton deleteButton;
 
     // Constructor
     public BookGUI(BookManager manager) {
@@ -63,6 +65,14 @@ public class BookGUI {
         JButton displayButton = new JButton("Display All Books");
         JButton clearButton = new JButton("Clear Fields");
         JButton sortButton = new JButton("Sort");
+
+        //Constructure
+        this.displayButton = displayButton;
+        
+
+        //Disable button
+        displayButton.setEnabled(false);
+
 
         // Add Buttons to the Panel
         addToPanel(inputPanel, addButton, gbc, 0, 5);
@@ -117,6 +127,7 @@ public class BookGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 deleteBook();
+                
             }
         });
 
@@ -131,6 +142,7 @@ public class BookGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 displayBooks();
+                displayButton.setEnabled(false);
             }
         });
 
@@ -138,6 +150,12 @@ public class BookGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 clearFields();
+            }
+        });
+         sortButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                manager.sorBooks();
             }
         });
 
@@ -225,6 +243,7 @@ public class BookGUI {
             JOptionPane.showMessageDialog(null, "No Books found!");
         } else {
             updateTable(results);
+            displayButton.setEnabled(true);
         }
         clearFields();
     }
@@ -238,7 +257,7 @@ public class BookGUI {
                     book.getId(),
                     book.getTitle(),
                     book.getAuthor(),
-                    book.getNote()
+                    book.getNotes(),
                 });
             }
         }
@@ -250,7 +269,7 @@ public class BookGUI {
     	tableModel.setRowCount(0); // Clear existing rows
         for (int i=0; i<manager.getBookCount(); i++) {
         	Book nextBook = manager.getBooks()[i];
-            tableModel.addRow(new Object[]{nextBook.getId(), nextBook.getTitle(), nextBook.getAuthor(), nextBook.getNote()});
+            tableModel.addRow(new Object[]{nextBook.getId(), nextBook.getTitle(), nextBook.getAuthor(), nextBook.getNotes()});
         }
     }
 
