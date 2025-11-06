@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import java.awt.Color;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class BookGUI {
     private BookManager manager; // Reference to the BookManager
@@ -19,7 +22,6 @@ public class BookGUI {
     private JTable bookTable;
     private DefaultTableModel tableModel;
     private JButton displayButton;
-    private JButton deleteButton;
 
     // Constructor
     public BookGUI(BookManager manager) {
@@ -41,10 +43,199 @@ public class BookGUI {
 
         // Input Fields
         idField = createLargerTextField();
+        final String ID = "Type book ID here...";
+        
+        // Set the starting state: gray hint text
+        idField.setText(ID);
+        idField.setForeground(Color.GRAY);
+
+        // --- 3. Add the FocusListener ---
+        idField.addFocusListener(new FocusAdapter() {
+            
+            /**
+             * This runs when you CLICK INTO the field.
+             */
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Check if the current text is the hint
+                if (idField.getText().equals(ID)) {
+                    // If it is, clear the text and change color to black
+                    idField.setText("");
+                    idField.setForeground(Color.BLACK);
+                }
+            }
+
+            /**
+             * This runs when you CLICK AWAY from the field.
+             */
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Check if the user left the field empty
+                if (idField.getText().isEmpty()) {
+                    // If they did, put the hint back
+                    idField.setText(ID);
+                    idField.setForeground(Color.GRAY);
+                }
+            }
+        });
+
+
+
+
         titleField = createLargerTextField();
+
+ final String TITLE = "Type book tilte here...";
+        
+        // Set the starting state: gray hint text
+        titleField.setText(TITLE);
+        titleField.setForeground(Color.GRAY);
+
+        // --- 3. Add the FocusListener ---
+        titleField.addFocusListener(new FocusAdapter() {
+            
+            /**
+             * This runs when you CLICK INTO the field.
+             */
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Check if the current text is the hint
+                if (titleField.getText().equals(TITLE)) {
+                    // If it is, clear the text and change color to black
+                    titleField.setText("");
+                    titleField.setForeground(Color.BLACK);
+                }
+            }
+
+            /**
+             * This runs when you CLICK AWAY from the field.
+             */
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Check if the user left the field empty
+                if (titleField.getText().isEmpty()) {
+                    // If they did, put the hint back
+                    titleField.setText(TITLE);
+                    titleField.setForeground(Color.GRAY);
+                }
+            }
+        });
+
+
+
+
+    
         authorField = createLargerTextField();
+        final String AUTHOR = "Type author name here...";
+        // Set the starting state: gray hint text
+        authorField.setText(AUTHOR);
+        authorField.setForeground(Color.GRAY);
+
+        // --- 3. Add the FocusListener ---
+        authorField.addFocusListener(new FocusAdapter() {
+            
+            /**
+             * This runs when you CLICK INTO the field.
+             */
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Check if the current text is the hint
+                if (authorField.getText().equals(AUTHOR)) {
+                    // If it is, clear the text and change color to black
+                    authorField.setText("");
+                    authorField.setForeground(Color.BLACK);
+                }
+            }
+
+            /**
+             * This runs when you CLICK AWAY from the field.
+             */
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Check if the user left the field empty
+                if (authorField.getText().isEmpty()) {
+                    // If they did, put the hint back
+                    authorField.setText(AUTHOR);
+                    authorField.setForeground(Color.GRAY);
+                }
+            }
+        });
+
+
+
+
+
         notesField = createLargerTextField();
+        final String NOTE = "Type your notes here...";
+        // Set the starting state: gray hint text
+        notesField.setText(NOTE);
+        notesField.setForeground(Color.GRAY);
+
+        // --- 3. Add the FocusListener ---
+        notesField.addFocusListener(new FocusAdapter() {
+            
+            /**
+             * This runs when you CLICK INTO the field.
+             */
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Check if the current text is the hint
+                if (notesField.getText().equals(NOTE)) {
+                    // If it is, clear the text and change color to black
+                    notesField.setText("");
+                    notesField.setForeground(Color.BLACK);
+                }
+            }
+
+            /**
+             * This runs when you CLICK AWAY from the field.
+             */
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Check if the user left the field empty
+                if (notesField.getText().isEmpty()) {
+                    // If they did, put the hint back
+                    notesField.setText(NOTE);
+                    notesField.setForeground(Color.GRAY);
+                }
+            }
+        });
         searchField = createLargerTextField();
+
+         final String SEARCH = "Type book ID here...";
+        
+        // Set the starting state: gray hint text
+        searchField.setText(SEARCH);
+        searchField.setForeground(Color.GRAY);
+
+        // --- 3. Add the FocusListener ---
+        searchField.addFocusListener(new FocusAdapter() {
+            
+            /**
+             * This runs when you CLICK INTO the field.
+             */
+            @Override
+            public void focusGained(FocusEvent e) {
+                // Check if the current text is the hint
+                if (searchField.getText().equals(SEARCH)) {
+                    // If it is, clear the text and change color to black
+                    searchField.setText("");
+                    searchField.setForeground(Color.BLACK);
+                }
+            }
+
+            /**
+             * This runs when you CLICK AWAY from the field.
+             */
+            @Override
+            public void focusLost(FocusEvent e) {
+                // Check if the user left the field empty
+                if (searchField.getText().isEmpty()) {
+                    // If they did, put the hint back
+                    searchField.setText(SEARCH);
+                    searchField.setForeground(Color.GRAY);
+                }
+            }
+        });
 
         // Add Labels and Input Fields to the Panel using GridBagLayout
         addToPanel(inputPanel, new JLabel("Book ID:"), gbc, 0, 0);
